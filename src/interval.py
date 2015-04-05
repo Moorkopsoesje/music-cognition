@@ -25,4 +25,5 @@ def gen_intervals(resolution = 16):
 
 
 if __name__ == '__main__':
-    print gen_intervals(8)
+    intervals = gen_intervals(8)
+    print len(intervals), intervals
