@@ -22,8 +22,3 @@ def gen_intervals(resolution = 16):
                     intervals.append( [x1,x2,x3])
 
     return intervals
-
-
-if __name__ == '__main__':
-    intervals = gen_intervals(8)
-    print len(intervals), intervals
