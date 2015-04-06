@@ -31,19 +31,26 @@ def makemidi(intervals, testphase):
     volume = 100
     counter = 0
     
-    for int in intervals:                   # Nr of intervals
-        for j in range(0,rep):              # Nr of repetitions
-            for k in range(0,len(int)):     # Nr of notes in interval
+    for int in intervals:                       # Nr of intervals
+        for j in range(0,rep):                  # Nr of repetitions
+            for k in range(0,len(int)+1):       # Nr of notes in interval
                 # Add the note.
-                MyMIDI.addNote(track,channel,pitch,note + int[k]/2 + counter,duration,volume)
-                note = note + int[k]/2
+                if k == 0:
+                    time = note + counter
+                    MyMIDI.addNote(track,channel,pitch,time,duration,volume)
+                else:
+                    time = note + int[k-1] + counter
+                    MyMIDI.addNote(track,channel,pitch,time,duration,volume)
+                    note = note + int[k-1]
+                print time
             counter = counter + 5
+            
             #MyMIDI.addNote(track,channel,pitch,counter,15,0)
             
     binfile = NULL
     # Write it to disk.
     if testphase:
-        binfile = open("testphase.mid", 'wb')
+        binfile = open("testphase2.mid", 'wb')
     else:
         binfile = open("trainphase.mid", 'wb')
     
