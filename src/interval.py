@@ -1,4 +1,6 @@
 from __future__ import division
+import numpy as np
+
 
 #Multidimensional range
 def drange(start, stop, step):
@@ -27,3 +29,12 @@ def gen_intervals(resolution = 16, minimal_interval=0):
                         intervals.append( [x1,x2,x3])
 
     return intervals
+    
+    
+def write_to_csv(intervals):
+    np.savetxt('./intervals.csv', intervals, delimiter=',')
+    
+    
+if __name__ == '__main__':
+    intervals = gen_intervals(15, 0.1)
+    write_to_csv(intervals)
