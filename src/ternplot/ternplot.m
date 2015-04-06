@@ -30,7 +30,7 @@
 % Modifiers
 % CS Carl Sandrock
 
-function handles = ternplot(A, B, C, varargin)
+function handles = ternplot(A, B, C, plotfunction, varargin)
 
 majors = 5;
 
@@ -49,8 +49,13 @@ y = y(i);
 % Make ternary axes
 [hold_state, cax, next] = ternaxes(majors);
 
-% plot data
-q = plot(x, y, varargin{:});
+if plotfunction == 'scatter'
+    % plot data
+    q = scatter(x, y, varargin{:});
+else 
+    q = plot(x,y, varargin{:});
+end
+
 if nargout > 0
     hpol = q;
 end
