@@ -8,7 +8,8 @@ import interval
 import makemidi
 
 if __name__ == '__main__':
-    intervals = interval.gen_intervals(16, 0.2)
+    intervals = interval.gen_intervals(19, 0.15)
     print len(intervals), intervals
     testphase = True
     makemidi.makemidi(intervals, testphase)
+    print len(intervals), intervals
