@@ -27,5 +27,8 @@ I = delta(:,3);
 %ternpcolor(A,B,C,sum_delta);
 
 ternvelocity(A, B, C, D, E, F);
+ternlabel('Interval 1', 'Interval 2', 'Interval 3');
+title('Error quiver plot');
+legend('Original intervals', 'Performance', 'Error');
 
 'hallo'
