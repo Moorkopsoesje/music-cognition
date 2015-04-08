@@ -7,9 +7,9 @@ dataC = 1 - dataA - dataB;
 A = linspace(0, 1, 100);
 B = -A.^2+A;
 
-ternplot(dataA, dataB, dataC, 'r.');
+ternplot(dataA, dataB, dataC, 'asdf');
 hold on
-ternplot(A, B)
+ternplot(A, B, 1-(A+B), 'asdf')
 ternlabel('A', 'B', 'C')
 legend('Data', 'Fit')
 hold off

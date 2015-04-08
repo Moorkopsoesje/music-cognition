@@ -49,7 +49,7 @@ y = y(i);
 % Make ternary axes
 [hold_state, cax, next] = ternaxes(majors);
 
-if plotfunction == 'scatter'
+if strcmp(plotfunction,'scatter')
     % plot data
     q = scatter(x, y, varargin{:});
 else 
