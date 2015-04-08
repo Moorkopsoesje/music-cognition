@@ -25,10 +25,15 @@ I = delta(:,3);
 
 %terncontour(A, B, sum_delta);
 %ternpcolor(A,B,C,sum_delta);
+hold on
 
-ternvelocity(A, B, C, D, E, F);
+ternplot(A, B, C, 'scatter', 'filled', 'k')
+set(0,'DefaultTextFontSize',16)
+ternvelocity(A, B, C, D, E, F, 'b', 'Autoscale','off', 'Linewidth', 1.8);
 ternlabel('Interval 1', 'Interval 2', 'Interval 3');
-title('Error quiver plot');
-legend('Original intervals', 'Performance', 'Error');
+title('Error quiver plot', 'FontSize', 20);
+legend('Original intervals', 'Error vector');
+
+hold off
 
 'hallo'

@@ -6,11 +6,11 @@ if nargin < 3
     C = 1 - (A+B);
 end;
 
-[A, B, C] = fractions(A, B, C);
-[x, y] = terncoords(A, B, C);
+[fA, fB, fC] = fractions(A, B, C);
+[x, y] = terncoords(fA, fB, fC);
 
-[D, E, F] = fractions(D,E,F);
-[v, w] = terncoords(D, E, F);
+[fD, fE, fF] = fractions(D,E,F);
+[v, w] = terncoords(fD, fE, fF);
 
 % Sort data points in x order
 %[x, i] = sort(x);
@@ -25,9 +25,8 @@ end;
 % Make ternary axes
 [hold_state, cax, next] = ternaxes(majors);
 
-q = scatter(x,y);
-q = scatter(v,w, 'r');
-%q = scatter(q1, q2, 'g');
+%q = scatter(x,y, 'filled', 'k');
+%q = scatter(v,w, 'r');
 
 % plot data quiveroni
     q = quiver(x, y, v-x, w-y, varargin{:});
