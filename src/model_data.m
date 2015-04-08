@@ -1,39 +1,34 @@
 intervals = load('intervals.csv');
 
 
-
 data = load('noise.csv'); % test data, noisy intervals
 
+% Difference performance/original
 delta = data - intervals;
 
-sum_delta = sum(abs(delta), 2)
+%Length of these error vectors
+length_delta = sqrt(sum(abs(delta).^2,2))
 
+% Original
 A = intervals(:,1);
 B = intervals(:,2);
 C = intervals(:,3);
 
+% Performance
 D = data(:,1);
 E = data(:,2);
 F = data(:,3);
 
-G = delta(:,1);
-H = delta(:,2);
-I = delta(:,3);
 
-%ternplot(data(:,1), data(:,2), data(:,3), 'scatter')
-%ternplot(D, E, F, 'scatter')
+%ternpcolor(A,B,C,length_delta);
+%terncontour(A,B,length_delta);
 
-%terncontour(A, B, sum_delta);
-%ternpcolor(A,B,C,sum_delta);
-hold on
-
-ternplot(A, B, C, 'scatter', 'filled', 'k')
 set(0,'DefaultTextFontSize',16)
-ternvelocity(A, B, C, D, E, F, 'b', 'Autoscale','off', 'Linewidth', 1.8);
 ternlabel('Interval 1', 'Interval 2', 'Interval 3');
-title('Error quiver plot', 'FontSize', 20);
-legend('Original intervals', 'Error vector');
 
-hold off
+%ternplot(A, B, C, 'scatter', 'filled', 'k')
+%ternplot(D, E, F, 'scatter', 'filled', 'r')
 
-'hallo'
+ternvelocity(A, B, C, D, E, F, 'b', 'Linewidth', 1.8);
+
+legend('Error vector');
