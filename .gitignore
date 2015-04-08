@@ -5,6 +5,11 @@ models/
 *.pkl*
 .idea/
 
+# Ignore recordings
+recordings/
+recordings*
+*.band*
+
 *.sublime-project
 *.sublime-workspace
 
