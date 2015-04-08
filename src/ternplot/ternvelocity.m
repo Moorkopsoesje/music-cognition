@@ -9,7 +9,7 @@ end;
 [A, B, C] = fractions(A, B, C);
 [x, y] = terncoords(A, B, C);
 
-[D, E, F] = fractionserror(A,B,C,D,E,F);
+[D, E, F] = fractions(D,E,F);
 [v, w] = terncoords(D, E, F);
 
 % Sort data points in x order

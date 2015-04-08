@@ -23,9 +23,9 @@ I = delta(:,3);
 %ternplot(data(:,1), data(:,2), data(:,3), 'scatter')
 %ternplot(D, E, F, 'scatter')
 
+%terncontour(A, B, sum_delta);
+%ternpcolor(A,B,C,sum_delta);
 
-
-terncontour(A, B, sum_delta);
-%ternvelocity(A, B, C, E, F, G);
+ternvelocity(A, B, C, D, E, F);
 
 'hallo'
