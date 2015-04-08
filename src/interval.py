@@ -43,7 +43,7 @@ def gen_intervals_with_noise(resolution=19, minimal_interval=0.157):
     
     for intervals in base:
         for i in range(len(intervals)):
-            intervals[i] += random.random()*0.03-0.015
+            intervals[i] += random.random()*0.08-0.04
             
             
     
@@ -86,9 +86,13 @@ def generate_for_subject(name, resolution=19, minimum_interval=0.157):
         write_to_csv(intervals, filename+'-intervals.csv')
         makemidi.makemidi(intervals, filename)
 
+def gen_mock_data():
+    intervals = gen_intervals(19, 0.157)
+    noisy_intervals = gen_intervals_with_noise(19, 0.157)
+    write_to_csv(intervals)
+    write_to_csv(noisy_intervals, './noise.csv')
+
+
 if __name__ == '__main__':
-    #intervals = gen_intervals(19, 0.157)
-    #noisy_intervals = gen_intervals_with_noise(19, 0.157)
-    #write_to_csv(intervals)
-    #write_to_csv(noisy_intervals, './noise.csv')
+    
     generate_for_subject('senna')
