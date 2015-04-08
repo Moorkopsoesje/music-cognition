@@ -29,7 +29,7 @@ end;
 %q = scatter(v,w, 'r');
 
 % plot data quiveroni
-    q = quiver(x, y, v-x, w-y, varargin{:});
+    q = quiver(x, y, v-x, w-y, varargin{:}, 'Autoscale','off');
 
 if nargout > 0
     hpol = q;
