@@ -1,6 +1,6 @@
 # Ignore data files
 data/
-
+data/*
 models/
 *.pkl*
 .idea/

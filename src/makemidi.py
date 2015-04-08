@@ -3,7 +3,7 @@
 from midiutil.MidiFile import MIDIFile
 from boto.dynamodb.condition import NULL
 
-def makemidi(intervals, testphase):
+def makemidi(intervals, filename='test.midi'):
     # Create the MIDIFile Object with 1 track
     MyMIDI = MIDIFile(1)
     
@@ -16,12 +16,8 @@ def makemidi(intervals, testphase):
     note = 0
     
     # Add track name and tempo.
-    if testphase:
-        track = 0  
-        MyMIDI.addTrackName(track,time,"Music Cognition - Test Phase")
-    else:
-        track = 1
-        MyMIDI.addTrackName(track, time, "Music Cognition - Training Phase")
+    track = 0  
+    MyMIDI.addTrackName(track,time,"Music Cognition Experiment")
     MyMIDI.addTempo(track,time,60)
     
     # Add a note. addNote expects the following information:
@@ -42,17 +38,14 @@ def makemidi(intervals, testphase):
                     time = note + int[k-1] + counter
                     MyMIDI.addNote(track,channel,pitch,time,duration,volume)
                     note = note + int[k-1]
-                print time
+                #print time
             counter = counter + 5
             
             #MyMIDI.addNote(track,channel,pitch,counter,15,0)
             
     binfile = NULL
     # Write it to disk.
-    if testphase:
-        binfile = open("testphase2.mid", 'wb')
-    else:
-        binfile = open("trainphase.mid", 'wb')
+    binfile = open(filename+".mid", 'wb')
     
     if binfile != NULL:
         MyMIDI.writeFile(binfile)
