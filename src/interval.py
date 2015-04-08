@@ -1,5 +1,6 @@
 from __future__ import division
 import numpy as np
+import random
 
 
 #Multidimensional range
@@ -10,7 +11,7 @@ def drange(start, stop, step):
      	r += step
 
 
-def gen_intervals(resolution = 16, minimal_interval=0):
+def gen_intervals(resolution = 19, minimal_interval=0):
     
     
     pos = [x for x in drange(1/resolution, (resolution-1)/resolution, 1/resolution)]
@@ -31,10 +32,27 @@ def gen_intervals(resolution = 16, minimal_interval=0):
     return intervals
     
     
-def write_to_csv(intervals):
-    np.savetxt('./intervals.csv', intervals, delimiter=',')
+def write_to_csv(intervals, filename='./intervals.csv'):
+    np.savetxt(filename, intervals, delimiter=',')
+    
+    
+def gen_intervals_with_noise(resolution=19, minimal_interval=0.157):
+    
+    base = gen_intervals(resolution, minimal_interval)
+    
+    for intervals in base:
+        for i in range(len(intervals)):
+           # intervals[i] += random.random()*0.03-0.015
+            intervals[i] += 0.025
+            
+            
+    
+    return base
+    
     
     
 if __name__ == '__main__':
-    intervals = gen_intervals(15, 0.1)
+    intervals = gen_intervals(19, 0.157)
+    noisy_intervals = gen_intervals_with_noise(19, 0.157)
     write_to_csv(intervals)
+    write_to_csv(noisy_intervals, './noise.csv')
