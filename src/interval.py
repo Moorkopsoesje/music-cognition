@@ -42,8 +42,7 @@ def gen_intervals_with_noise(resolution=19, minimal_interval=0.157):
     
     for intervals in base:
         for i in range(len(intervals)):
-           # intervals[i] += random.random()*0.03-0.015
-            intervals[i] += 0.025
+            intervals[i] += random.random()*0.03-0.015
             
             
     
