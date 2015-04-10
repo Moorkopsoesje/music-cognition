@@ -10,6 +10,9 @@ recordings/
 recordings*
 *.band*
 
+# Ignore work files for forms
+*.pages*
+
 *.sublime-project
 *.sublime-workspace
 
