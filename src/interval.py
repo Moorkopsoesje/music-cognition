@@ -49,17 +49,17 @@ def gen_intervals_with_noise(resolution=19, minimal_interval=0.157):
     
     return base
     
-def take_even_uneven(intervals):
+def take_even_odd(intervals):
     even = []
-    uneven = []    
+    odd = []    
 
     for i, interval in enumerate(intervals):
         if i % 2 == 0:
             even.append(interval)
         else:
-            uneven.append(interval)
+            odd.append(interval)
             
-    return even, uneven
+    return even, odd
     
 def generate_for_subject(name, resolution=19, minimum_interval=0.157):
     
@@ -68,10 +68,10 @@ def generate_for_subject(name, resolution=19, minimum_interval=0.157):
     
     intervals = gen_intervals(resolution, minimum_interval)
     
-    even, uneven = take_even_uneven(intervals)
+    even, odd = take_even_odd(intervals)
     random.seed(name)
     random.shuffle(even)
-    random.shuffle(uneven)
+    random.shuffle(odd)
     
     
     for is_even in [True, False]:
@@ -80,8 +80,8 @@ def generate_for_subject(name, resolution=19, minimum_interval=0.157):
             intervals = even
             filename = '../data/even-' + name
         else:
-            intervals = uneven
-            filename = '../data/uneven-' + name
+            intervals = odd
+            filename = '../data/odd-' + name
             
         write_to_csv(intervals, filename+'-intervals.csv')
         makemidi.makemidi(intervals, filename)
@@ -95,4 +95,4 @@ def gen_mock_data():
 
 if __name__ == '__main__':
     
-    generate_for_subject('senna')
+    generate_for_subject('p11')
