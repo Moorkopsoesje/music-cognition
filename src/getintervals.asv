@@ -1,7 +1,8 @@
 clear all;
-subject = 'odd-p04';
+subject = 'o04';
 
-midi = readmidi(strcat('exp/',subject,'.mid'))
+midi = readmidi(strcat('data/',subject,'.mid'))
+midi2
 
 
 Notes=midiInfo(midi,0);
@@ -15,8 +16,8 @@ for i = 1:(size(c,1)-1)
     intervals(i) = c(i+1) - c(i);
 end
 
-filename = strcat('timestamps/',subject,'.txt');
+filename = strcat('intervals/',subject,'.txt');
 
 fileID = fopen(filename, 'w+');
-fprintf(fileID,'%f\n', c);
+fprintf(fileID,'%f\n', intervals);
 fclose(fileID);

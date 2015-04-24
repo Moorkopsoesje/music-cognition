@@ -32,19 +32,9 @@ def find_closest(interval, list_of_intervals):
     
     #print list_of_intervals[closest_index], '\n', interval, '\n----'
     
-    
     return closest_index
     
-
-def _print(a):
-    print(a)
-
-
-if __name__ == "__main__":
-
-    subject = 'even-p01'
-
-
+def get_interval_indices(subject='odd-p01'):
     with open('all_intervals.csv') as f:
         all_intervals = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         
@@ -58,5 +48,6 @@ if __name__ == "__main__":
             #print exp_intervals
             indices = match_intervals(all_intervals, exp_intervals)
         
-            print indices
-    
+            sorted(indices)
+def _print(a):
+    print(a)
