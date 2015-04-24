@@ -33,7 +33,7 @@ def split_intervals(subject):
         return split
     
     
-def timestamps_to_intervals(subject):
+def split_timestamps(subject):
     with open('timestamps/'+subject+'.txt') as f:
         timestamps = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         timestamps = [x[0]+2 for x in timestamps]
@@ -55,11 +55,31 @@ def timestamps_to_intervals(subject):
         
         
         return split
+
+def timestamps_to_intervals(split):
+    
+    intervals = []
+    
+    for x in split:
+        interval = []
+        for i in range(len(x)-1):
+            j = i + 1
+            interval.append(np.array(x[j])-np.array(x[i]))
+    
+        intervals.append(interval)
+    return intervals        
+        
+        
     
 if __name__ == '__main__':
-    split = timestamps_to_intervals('e01');
+    split = split_timestamps('o04');
+    intervals = timestamps_to_intervals(split)
     
-    print split
-    print [len(x) for x in split] 
-    #print [sum(x) for x in split]
+    #print intervals    
+    
+    #print split
+    print [len(x) for x in split]
+    print [len(x) for x in intervals] 
+    print [sum(x) for x in intervals]
     print len(split)
+    print len(intervals)
