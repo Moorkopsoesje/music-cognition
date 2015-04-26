@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Filter performed intervals, write to file with corresponding index..
+from __future__ import division
 import csv
 import numpy as np
-
 import matchintervals
 
 #Split intervals per performance
@@ -79,8 +79,17 @@ def filter_intervals(labeled):
         if len(interval) == 3:
             filtered.append((label,interval))
             
-            
     return filtered
+    
+def normalize_intervals(labeled):
+    normalized = []
+
+    for label, interval in labeled:
+        i_sum = sum(interval)
+        
+        normalized.append((label,np.array(interval)/i_sum))
+            
+    return normalized
     
 def first_el(item):
     return item[0]    
@@ -90,13 +99,13 @@ def print_len(item):
     
 if __name__ == '__main__':
     
-    subject = 'e04'
+    subject = 'e01'
     
     split = split_timestamps(subject);
     intervals = timestamps_to_intervals(split)
     
       
-    
+    #e01 becomes even-p01
     if subject.startswith('o'):
         original_interval_name = 'odd-p'+subject[-2:]
     else:
@@ -109,20 +118,24 @@ if __name__ == '__main__':
     #Repeat every item in order 3 times (as subjects heard the same 3 times)
     order_x3 = [x for x in order for i in range(3)]
     
-    #Tuples of 'index, list of intervals'
+    #Tuples of (index, list of intervals)
     labeled =   zip(order_x3, intervals)  
     
+    #Normalize so they sum to one
+    labeled = normalize_intervals(labeled)    
+    
+    #Sort the intervals by index
     sorted_labeled = sorted(labeled, key=first_el)
-    #print sorted_labeled
     
-    map(matchintervals._print, sorted_labeled)
     
-    filtered = filter_intervals(sorted_labeled)    
     
-    #print split
-    #print [len(x) for x in split]
-    #print [len(x) for x in intervals] 
-    #print [sum(x) for x in intervals]
-    print len(split)
-    print len(intervals)
-    print len(filtered)
+    filtered = filter_intervals(sorted_labeled)  
+    map(matchintervals._print, filtered)
+    
+    print 'N Before filtering failed ones: ', len(intervals)
+    print 'N After filtering: ', len(filtered)
+    
+    f_labels, f_intervals = zip(*filtered)
+    
+    np.savetxt('./intervals/filtered-intervals-'+subject+'.csv', f_intervals, delimiter=',')
+    np.savetxt('./intervals/filtered-indices-'+subject+'.csv', f_labels, delimiter=',', fmt="%1.d")
