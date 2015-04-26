@@ -47,7 +47,6 @@ def get_interval_indices(subject='odd-p01'):
             
             #print exp_intervals
             indices = match_intervals(all_intervals, exp_intervals)
-        
-            sorted(indices)
+    return indices
 def _print(a):
     print(a)
