@@ -70,7 +70,30 @@ def timestamps_to_intervals(split):
     
         intervals.append(interval)
     return intervals        
+
+#Combine bounces
+def combine_intervals(interval_list, threshold = 0.06):
+    
+    combined = []
+    
+    for interval_sequence in interval_list:
+        new_intervals = []
         
+        #Bounce duration, to be added to next interval
+        to_keep = 0
+        
+        for interval in interval_sequence:
+            if interval < threshold:
+                #Combine into the last interval
+                to_keep = interval
+            else:
+                new_intervals.append(interval+ to_keep)
+                to_keep = 0
+        
+        combined.append(new_intervals)
+        
+    return combined
+
 def filter_intervals(labeled):
     
     filtered = []
@@ -99,11 +122,13 @@ def print_len(item):
     
 if __name__ == '__main__':
     
-    subject = 'e01'
+    subject = 'e05'
     
     split = split_timestamps(subject);
     intervals = timestamps_to_intervals(split)
     
+    #Combine intervals (remove bounces somewhat)
+    combined = combine_intervals(intervals)
       
     #e01 becomes even-p01
     if subject.startswith('o'):
@@ -119,7 +144,11 @@ if __name__ == '__main__':
     order_x3 = [x for x in order for i in range(3)]
     
     #Tuples of (index, list of intervals)
-    labeled =   zip(order_x3, intervals)  
+    labeled =   zip(order_x3, combined)  
+    
+    
+   # for x, y in labeled:
+   #     print x, y
     
     #Normalize so they sum to one
     labeled = normalize_intervals(labeled)    
@@ -129,11 +158,25 @@ if __name__ == '__main__':
     
     
     
+    
+    #Only keep those that are length 3
     filtered = filter_intervals(sorted_labeled)  
     map(matchintervals._print, filtered)
     
-    print 'N Before filtering failed ones: ', len(intervals)
-    print 'N After filtering: ', len(filtered)
+    print 'N Before filtering failed ones & combining: ', len(intervals)
+    print 'N After filtering combined(=removing bounces): ', len(filtered)
+    
+    #####
+    #Only for showing effect of combining, not used
+    labeled_uncombined = zip(order_x3, intervals)
+    filtered_uncombined = filter_intervals(labeled_uncombined) 
+    
+    #Uncomment to print original performed intervals in order
+    #map(matchintervals._print, sorted(zip(order_x3,intervals), key=first_el))
+    
+    print 'N intervals saved by combining: ', len(filtered)-len(filtered_uncombined), 'up from', len(filtered_uncombined)
+    #####
+
     
     f_labels, f_intervals = zip(*filtered)
     
