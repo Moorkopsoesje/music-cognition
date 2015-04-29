@@ -120,9 +120,48 @@ def first_el(item):
 def print_len(item):
     print len(item)    
     
-if __name__ == '__main__':
+def average_per_subject(labeled_intervals):
     
-    subject = 'e05'
+    
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    
+    cur = labeled_intervals[0][0]   
+    
+    comb = []
+    n = 0   
+
+    for p, intervals in labeled_intervals:
+        
+        if p != cur and not n == 0: 
+            
+            averaged =  (cur, [i1/n, i2/n, i3/n])            
+            #print cur, averaged
+            comb.append( averaged )
+            
+            i1 = 0
+            i2 = 0
+            i3 = 0
+            cur = p
+            n = 0
+        
+       # print '(', p, '-', intervals, ')'
+        i1 += intervals[0]
+        i2 += intervals[1]
+        i3 += intervals[2]
+        
+        n += 1
+        
+              
+    averaged =  (cur, [i1/n, i2/n, i3/n])            
+    comb.append( averaged )     
+    
+    #print comb
+    return comb
+        
+            
+def timestamps_to_labeled_intervals(subject='o01'):
     
     split = split_timestamps(subject);
     intervals = timestamps_to_intervals(split)
@@ -161,7 +200,7 @@ if __name__ == '__main__':
     
     #Only keep those that are length 3
     filtered = filter_intervals(sorted_labeled)  
-    map(matchintervals._print, filtered)
+    #map(matchintervals._print, filtered)
     
     print 'N Before filtering failed ones & combining: ', len(intervals)
     print 'N After filtering combined(=removing bounces): ', len(filtered)
@@ -177,8 +216,25 @@ if __name__ == '__main__':
     print 'N intervals saved by combining: ', len(filtered)-len(filtered_uncombined), 'up from', len(filtered_uncombined)
     #####
 
+    map(matchintervals._print, filtered)
+    
+    filtered = average_per_subject(filtered)
+    filtered = normalize_intervals(filtered)
     
     f_labels, f_intervals = zip(*filtered)
     
+    map(matchintervals._print, filtered)
+    #print average_per_subject(filtered)
+    
+    
     np.savetxt('./intervals/filtered-intervals-'+subject+'.csv', f_intervals, delimiter=',')
-    np.savetxt('./intervals/filtered-indices-'+subject+'.csv', f_labels, delimiter=',', fmt="%1.d")
+    np.savetxt('./intervals/filtered-indices-'+subject+'.csv', f_labels, delimiter=',')#, fmt="%1.d")
+    
+
+if __name__ == '__main__':
+    subjects = ['e01', 'e02', 'e03', 'e04', 'e05', 'e06', 'o01', 'o02', 'o03', 'o04', 'o05', 'o06']
+    #subjects = ['e01']
+    for subject in subjects:
+        timestamps_to_labeled_intervals(subject)
+        
+    print "done"

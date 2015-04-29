@@ -1,5 +1,6 @@
+% 
 clear all;
-subject = 'o04';
+subject = 'o01';
 
 midi = readmidi(strcat('data/',subject,'.mid'))
 
@@ -15,8 +16,8 @@ for i = 1:(size(c,1)-1)
     intervals(i) = c(i+1) - c(i);
 end
 
-filename = strcat('intervals/',subject,'.txt');
+filename = strcat('timestamps/',subject,'.txt');
 
 fileID = fopen(filename, 'w+');
-fprintf(fileID,'%f\n', intervals);
+fprintf(fileID,'%f\n', c);
 fclose(fileID);

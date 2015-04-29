@@ -48,7 +48,7 @@ y = y(i);
 Z = Z(i);
 
 % The matrixes we work with should be square for the triangulation to work
-N = 25;
+N = 30;
 
 % Now we have X, Y, Z as vectors. 
 % use meshgrid to generate a grid
@@ -59,7 +59,7 @@ Br = linspace(min(fB), max(fB), N);
 
 % ...then use griddata to get a plottable array
 zg = griddata(x, y, Z, xg, yg, 'v4');
-zg(Ag + Bg > 1) = nan;
+zg(Ag + Bg > 1-(3/19)) = nan;
 
 % Make ternary axes
 [hold_state, cax, next] = ternaxes(majors);
