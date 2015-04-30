@@ -16,8 +16,8 @@
 function [hold_state, cax, next] = ternaxes(majors)
 
 %TODO: Get a better way of offsetting the labels
-xoffset = 0.04;
-yoffset = 0.02;
+xoffset = 0.08;
+yoffset = 0.04;
 
 % get hold state
 cax = newplot;

@@ -31,7 +31,7 @@ for i = 1:size(part_names,1)
     for j = 1:size(ind_intervals,1)
         index = ind_intervals(j,1)+1;
         vect = ind_intervals(j,2:end);
-        vect_original = interv(index,:)
+        vect_original = interv(index,:);
         dist_sum = dist_sum + dist(vect, vect_original');
     end
     
