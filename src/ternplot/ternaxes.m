@@ -59,7 +59,7 @@ if ~hold_state
 	% Generate labels
 	majorticks = linspace(0, 1, majors + 1);
 	majorticks = majorticks(1:end-1);
-	labels = num2str(majorticks' * 1);
+	labels = num2str(majorticks'*1);
 	
     zerocomp = zeros(size(majorticks)); % represents zero composition
     
