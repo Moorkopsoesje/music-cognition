@@ -27,10 +27,22 @@ E = data(:,2);
 F = data(:,3);
 
 %hold on
+figure(1)
+
+ternlabel('Interval 1', 'Interval 2', 'Interval 3');
+
+legend('Error');
 ternpcolor(A,B,C,length_delta);
-%terncontour(A,B,length_delta);
+hold on
+ternpcolor(A,B,C,length_delta);
+%hold on
+
+
+
 figure(2)
-%ternpcolor(A,B,entropy);
+terncontour(A,B,length_delta);
+figure(3)
+ternpcolor(A,B,entropy);
 %terncontour(A,B,entropy);
 
 set(0,'DefaultTextFontSize',16)

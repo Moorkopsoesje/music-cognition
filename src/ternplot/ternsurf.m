@@ -48,7 +48,7 @@ y = y(i);
 Z = Z(i);
 
 % The matrixes we work with should be square for the triangulation to work
-N = 30;
+N = 39;
 
 % Now we have X, Y, Z as vectors. 
 % use meshgrid to generate a grid
@@ -66,7 +66,7 @@ zg(Ag + Bg > 1-(3/19)) = nan;
 
 % plot data
 tri = simpletri(N);
-trisurf(tri, xg, yg, zg);
+trisurf(tri, xg, yg, zg, 'EdgeColor', 'none');
 view([-37.5, 30]);
 
 if ~hold_state
