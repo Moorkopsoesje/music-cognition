@@ -24,6 +24,7 @@ E = data(:,2);
 F = data(:,3);
 set(0,'DefaultTextFontSize',14)
 
+
 figure(100)
 hold on
 figure(1)
@@ -66,13 +67,13 @@ ternplot(A, B, C, 'scatter', 'filled','k')
 ternplot(D, E, F, 'scatter', 'filled', 'r')
 ternvelocity(A, B, C, D, E, F, 'b', 'Linewidth', 1.8);
 
-print('-f1','graphs/error_color','-dpng')
-print('-f2','graphs/error_contour','-dpng')
-print('-f3','graphs/entropy_color','-dpng')
-print('-f4','graphs/entropy_contour','-dpng')
-print('-f5','graphs/quiver','-dpng')
-print('-f6','graphs/quiver_withfrom','-dpng')
-print('-f7','graphs/quiver_withfromto','-dpng')
+%print('-f1','graphs/error_color','-dpng')
+%print('-f2','graphs/error_contour','-dpng')
+%print('-f3','graphs/entropy_color','-dpng')
+%print('-f4','graphs/entropy_contour','-dpng')
+%print('-f5','graphs/quiver','-dpng')
+%print('-f6','graphs/quiver_withfrom','-dpng')
+%print('-f7','graphs/quiver_withfromto','-dpng')
 
 
 
