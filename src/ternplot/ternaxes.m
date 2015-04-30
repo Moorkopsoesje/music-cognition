@@ -2,7 +2,7 @@
 %   HOLD_STATE = TERNAXES(MAJORS) creates a ternary axis system using the system
 %   defaults and with MAJORS major tickmarks.
 
-% Author: Carl Sandrock 20050211
+% Author: Carl Sandrock 20050211, Moorkopsoessa 20150430
 
 % To Do
 
@@ -10,6 +10,7 @@
 
 % Modifiers
 % (CS) Carl Sandrock
+% (IW) Ino Wijnando
 
 
 function [hold_state, cax, next] = ternaxes(majors)

@@ -17,9 +17,6 @@ length_delta = sqrt(sum(delta.^2,2))
 A = intervals(:,1);
 B = intervals(:,2);
 C = intervals(:,3);
-%A = A .* 3;
-%B = B .* 3;
-%C = C .* 3;
 
 % Performance
 D = data(:,1);
@@ -28,7 +25,6 @@ F = data(:,3);
 
 %hold on
 figure(1)
-
 ternlabel('Interval 1', 'Interval 2', 'Interval 3');
 
 legend('Error');

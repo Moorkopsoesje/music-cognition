@@ -215,7 +215,7 @@ def timestamps_to_labeled_intervals(subject='o01'):
     
     print 'N intervals saved by combining: ', len(filtered)-len(filtered_uncombined), 'up from', len(filtered_uncombined)
     #####
-
+    
     map(matchintervals._print, filtered)
     
     filtered = average_per_subject(filtered)
