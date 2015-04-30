@@ -28,8 +28,8 @@ figure(100)
 hold on
 figure(1)
 ternpcolor(A,B,C,length_delta);
+colorbar
 ternlabel('\leftarrow Interval 1', '\leftarrow Interval 2', '\leftarrow Interval 3');
-hold on
 
 figure(2)
 terncontour(A,B,length_delta);
@@ -37,6 +37,7 @@ ternlabel('\leftarrow Interval 1', '\leftarrow Interval 2', '\leftarrow Interval
 
 figure(3)
 ternpcolor(A,B,entropy);
+colorbar
 ternlabel('\leftarrow Interval 1', '\leftarrow Interval 2', '\leftarrow Interval 3');
 
 
