@@ -13,4 +13,4 @@ The timestamps of the sounds were read using Matlab. The intervals between times
 * Matlab (2014a was used)
 * [Midiutil](https://code.google.com/p/midiutil/) for Python
 * [NumPy](http://numpy.org) for Python
-* [MIDI](http://www.kenschutte.com/midi/) for Matlab
+* [MIDI](http://www.kenschutte.com/midi) for Matlab
